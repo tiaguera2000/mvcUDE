@@ -20,7 +20,7 @@ namespace mvcUDE.Models
 
         }
 
-        public Seller(int id, string name, string email, DateTime birthDate, double baseSalary, Department department, ICollection<SalesRecords> sales)
+        public Seller(int id, string name, string email, DateTime birthDate, double baseSalary, Department department)
         {
             Id = id;
             Name = name;
@@ -28,7 +28,6 @@ namespace mvcUDE.Models
             BirthDate = birthDate;
             BaseSalary = baseSalary;
             Department = department;
-            Sales = sales;
         }
 
         public void AddSales(SalesRecords sr)
