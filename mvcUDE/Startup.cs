@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using mvcUDE.Models;
 using mvcUDE.Data;
+using mvcUDE.Services;
 
 namespace mvcUDE
 {
@@ -34,13 +35,14 @@ namespace mvcUDE
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<mvcUDEContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("mvcUDEContext"), builder =>
                     builder.MigrationsAssembly("mvcUDE")));
             services.AddScoped<SeedingService>();
+            services.AddScoped<SellerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
