@@ -14,6 +14,7 @@ namespace mvcUDE.Models
         public double BaseSalary { get; set; }
         public Department Department { get; set; }
         public ICollection<SalesRecords> Sales { get; set; } = new List<SalesRecords>();
+        public int DepartmentId { get; set; }
 
         public Seller()
         {
