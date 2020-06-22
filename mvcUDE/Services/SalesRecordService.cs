@@ -28,5 +28,19 @@ namespace mvcUDE.Services
                 .OrderByDescending(x => x.Date)
                 .ToListAsync();//join do sql
         }
+        public async Task<List<IGrouping<Department,SalesRecords>>> FindByDateGroupingAsync(DateTime? minDate, DateTime? maxDate)
+        {
+            var result = from obj in _context.SalesRecords select obj;
+
+            if (minDate.HasValue) result = result.Where(x => x.Date >= minDate.Value);
+
+            if (maxDate.HasValue) result = result.Where(x => x.Date <= maxDate.Value);
+
+            return await result.Include(x => x.Seller)
+                .Include(x => x.Seller.Department)
+                .OrderByDescending(x => x.Date)
+                .GroupBy(x => x.Seller.Department)
+                .ToListAsync();//join do sql
+        }
     }
 }
